@@ -6,6 +6,9 @@ const server: Server = createServer((req: IncomingMessage, res: ServerResponse) 
     // console.log("Res", res)
     // console.log(req.url);
     // console.log(req.method)
+    const url = req.url;
+    const method = req.method;
+
     if (req.url === "/" && req.method === "GET") {
         res.writeHead(200, { "Content-Type": "Application/json" });
         res.end(JSON.stringify({ message: "Welcome to the Home Page" }))
