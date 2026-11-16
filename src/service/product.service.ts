@@ -1,3 +1,10 @@
+import path from "node:path"
+import fs from "fs"
+
+const filePath = path.join(process.cwd(), "/src/database/db.json")
 export const ProductService = () => {
     // console.log(process.cwd());
+    // console.log(filePath)
+    const result = fs.readFileSync(filePath);
+    return result;
 }
