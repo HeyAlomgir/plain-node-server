@@ -1,24 +1,12 @@
 import { createServer, IncomingMessage, Server, ServerResponse } from "node:http";
-import { json } from "node:stream/consumers";
+import routeHandler from "./routes/route";
 
 const server: Server = createServer((req: IncomingMessage, res: ServerResponse) => {
     // console.log("Request", req)
     // console.log("Res", res)
     // console.log(req.url);
     // console.log(req.method)
-    const url = req.url;
-    const method = req.method;
-
-    if (url === "/" && method === "GET") {
-        res.writeHead(200, { "Content-Type": "Application/json" });
-        res.end(JSON.stringify({ message: "Welcome to the Home Page" }))
-    } else if (url?.startsWith("/products") && method === "GET") {
-        res.writeHead(200, { "Content-Type": "Application/json" });
-        res.end(JSON.stringify({ message: "Welcome tho the Products Page" }))
-    } else {
-        res.writeHead(404, { "Content-Type": "Application/json" });
-        res.end(JSON.stringify({ message: "Not Found url from server" }))
-    }
+    routeHandler(req, res);
 })
 server.listen(5000, () => {
     console.log("Server is running successfully! ")
