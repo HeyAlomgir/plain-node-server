@@ -1,8 +1,8 @@
-import { createServer } from "node:http"
-const server = createServer((req, res)=>{
+import { createServer } from "node:http";
+
+const server = createServer((req, res) => {
     console.log(req)
 })
-
-server.listen(3000, ()=>{
+server.listen(5000, () => {
     console.log("Server is running successfully! ")
 })
