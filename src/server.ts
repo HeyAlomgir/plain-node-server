@@ -9,10 +9,10 @@ const server: Server = createServer((req: IncomingMessage, res: ServerResponse) 
     const url = req.url;
     const method = req.method;
 
-    if (req.url === "/" && req.method === "GET") {
+    if (url === "/" && method === "GET") {
         res.writeHead(200, { "Content-Type": "Application/json" });
         res.end(JSON.stringify({ message: "Welcome to the Home Page" }))
-    } else if (req.url === "/products" && req.method === "GET") {
+    } else if (url?.startsWith("/products") && method === "GET") {
         res.writeHead(200, { "Content-Type": "Application/json" });
         res.end(JSON.stringify({ message: "Welcome tho the Products Page" }))
     } else {
