@@ -1,7 +1,7 @@
-import { createServer } from "node:http";
+import { createServer, IncomingMessage } from "node:http";
 
-const server = createServer((req, res) => {
-    console.log(req)
+const server = createServer((req: IncomingMessage, res) => {
+    console.log("Request", req)
 })
 server.listen(5000, () => {
     console.log("Server is running successfully! ")
