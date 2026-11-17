@@ -25,4 +25,4 @@ const productController = (req: IncomingMessage, res: ServerResponse) => {
 
     }
 }
-export default productController
+export default productController;
