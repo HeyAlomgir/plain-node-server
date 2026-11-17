@@ -4,6 +4,7 @@ import { ProductService } from "../service/product.service";
 const productController = (req: IncomingMessage, res: ServerResponse) => {
     const url = req.url;
     const method = req.method;
+    console.log(url);
 
     if (url === "/products" && method === "GET") {
         // const products = [
@@ -24,4 +25,4 @@ const productController = (req: IncomingMessage, res: ServerResponse) => {
 
     }
 }
-export default productController;
+export default productController
