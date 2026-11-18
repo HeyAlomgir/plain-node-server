@@ -5,7 +5,7 @@ import type { Iporduct } from "../types/product";
 const productController = (req: IncomingMessage, res: ServerResponse) => {
     const url = req.url;
     const method = req.method;
-    console.log(url);
+    // console.log(url);
 
     // single product newar read korar niyom
     const useParams = url?.split("/");
