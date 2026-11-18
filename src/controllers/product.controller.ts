@@ -1,10 +1,19 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { ProductService } from "../service/product.service";
+import type { Iporduct } from "../types/product";
 
 const productController = (req: IncomingMessage, res: ServerResponse) => {
     const url = req.url;
     const method = req.method;
     // console.log(url);
+
+    // single product newar read korar niyom
+    const useParams = url?.split("/");
+    // console.log(useParams)
+
+    // single id 
+    const id = useParams && useParams[1] === "products" ? Number(useParams[2]) : null;
+    console.log(id);
 
     if (url === "/products" && method === "GET") {
         // const products = [
@@ -22,6 +31,15 @@ const productController = (req: IncomingMessage, res: ServerResponse) => {
         const products = ProductService();
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end(JSON.stringify({ message: "Produts retrived successfully!", data: products }));
+
+    } else if (method === "GET" && id !== null) {
+        const products = ProductService();
+        const product = products.find((p: Iporduct) => p.id === id);
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ message: "Products retrived sucessfully!", data: product }));
+    } else {
+        res.writeHead(404, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ message: "Not Found url from server" }))
 
     }
 }

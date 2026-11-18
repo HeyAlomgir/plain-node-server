@@ -4,13 +4,7 @@ import productController from "../controllers/product.controller";
 const routeHandler = (req: IncomingMessage, res: ServerResponse) => {
     const url = req.url;
     const method = req.method;
-
-    //  single product newar niom
-
-    const useParams = url?.split("/");
-
-    const id = useParams && useParams[1] === "products" ? useParams[2] : null;
-    console.log(id);
+    // console.log(url)
 
     if (url === "/" && method === "GET") {
         res.writeHead(200, { "Content-Type": "application/json" });
