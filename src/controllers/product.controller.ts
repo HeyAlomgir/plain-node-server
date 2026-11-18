@@ -13,7 +13,7 @@ const productController = (req: IncomingMessage, res: ServerResponse) => {
 
     // single id 
     const id = useParams && useParams[1] === "products" ? Number(useParams[2]) : null;
-    console.log(id);
+    // console.log(id);
 
     if (url === "/products" && method === "GET") {
         // const products = [
@@ -35,6 +35,23 @@ const productController = (req: IncomingMessage, res: ServerResponse) => {
     } else if (method === "GET" && id !== null) {
         const products = ProductService();
         const product = products.find((p: Iporduct) => p.id === id);
+
+        // single prduct nah pawa gele if (!product) {
+        if (!product) {
+            res.writeHead(404, {
+                "Content-Type": "application/json"
+            });
+
+            res.end(JSON.stringify({
+                message: "Product not found"
+            }));
+
+            return;
+        }
+
+
+
+
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end(JSON.stringify({ message: "Products retrived sucessfully!", data: product }));
     } else {
