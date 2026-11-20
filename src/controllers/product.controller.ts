@@ -58,7 +58,7 @@ const productController = (req: IncomingMessage, res: ServerResponse) => {
             message: "Products retrived sucessfully!",
             data: product
         }));
-    } else if (method === "POST") {
+    } else if (method === "POST" && url == "/products") {
         res.writeHead(201, { "Content-Type": "application/json" });
         res.end(JSON.stringify({ message: "Crated a sucesfully" }))
     } else {
