@@ -59,11 +59,8 @@ const productController = (req: IncomingMessage, res: ServerResponse) => {
             data: product
         }));
     } else if (method === "POST") {
-        res.writeHead(200, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({
-            message: "Products retrived sucessfully!",
-            // data: product
-        }));
+        res.writeHead(201, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ message: "Crated a sucesfully" }))
     } else {
         res.writeHead(404, { "Content-Type": "application/json" });
         res.end(JSON.stringify({ message: "Not Found url from server" }))
