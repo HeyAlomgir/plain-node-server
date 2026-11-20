@@ -36,7 +36,7 @@ const productController = (req: IncomingMessage, res: ServerResponse) => {
         const products = ProductService();
         const product = products.find((p: Iporduct) => p.id === id);
 
-        // single prduct nah pawa gele if (!product) {
+        // single prduct nah pawa gele if (!product) {}
         if (!product) {
             res.writeHead(404, {
                 "Content-Type": "application/json"
