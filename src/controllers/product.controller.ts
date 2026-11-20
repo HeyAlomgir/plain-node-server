@@ -32,7 +32,8 @@ const productController = (req: IncomingMessage, res: ServerResponse) => {
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end(JSON.stringify({ message: "Produts retrived successfully!", data: products }));
 
-    } else if (method === "GET" && id !== null) {
+    }
+    else if (method === "GET" && id !== null) {
         const products = ProductService();
         const product = products.find((p: Iporduct) => p.id === id);
 
@@ -53,7 +54,16 @@ const productController = (req: IncomingMessage, res: ServerResponse) => {
 
 
         res.writeHead(200, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({ message: "Products retrived sucessfully!", data: product }));
+        res.end(JSON.stringify({
+            message: "Products retrived sucessfully!",
+            data: product
+        }));
+    } else if (method === "POST") {
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({
+            message: "Products retrived sucessfully!",
+            // data: product
+        }));
     } else {
         res.writeHead(404, { "Content-Type": "application/json" });
         res.end(JSON.stringify({ message: "Not Found url from server" }))
