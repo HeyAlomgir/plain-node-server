@@ -61,10 +61,19 @@ const productController = async (req: IncomingMessage, res: ServerResponse) => {
         }));
     } else if (method === "POST" && url == "/products") {
         const body = await bodyParser(req);
-        console.log(body);
+        // console.log(body);
+        const newProduct = {
+            id: Date.now(),
+            ...body
+
+        }
+        console.log(newProduct)
 
         res.writeHead(201, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({ message: "Crated a sucesfully" }))
+        res.end(JSON.stringify({
+            message: "Crated a sucesfully",
+            data: newProduct,
+        }))
     } else {
         res.writeHead(404, { "Content-Type": "application/json" });
         res.end(JSON.stringify({ message: "Not Found url from server" }))
