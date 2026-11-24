@@ -1,5 +1,5 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
-import { ProductService } from "../service/product.service";
+import { createProdut, ProductService } from "../service/product.service";
 import type { Iporduct } from "../types/product";
 import { bodyParser } from "../utils/parseBody";
 
@@ -67,7 +67,12 @@ const productController = async (req: IncomingMessage, res: ServerResponse) => {
             ...body
 
         }
-        console.log(newProduct)
+
+        const products = ProductService();
+        products.push(newProduct);
+        createProdut(products);
+
+
 
         res.writeHead(201, { "Content-Type": "application/json" });
         res.end(JSON.stringify({
